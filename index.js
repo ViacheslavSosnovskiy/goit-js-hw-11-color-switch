@@ -7,24 +7,35 @@ const colors = [
   "#795548",
 ];
 
-const startBtn = document.querySelector('[data-value="start"]');
-const stopBtn = document.querySelector('[data-value="stop"]');
+refs = {
+  startBtn: document.querySelector('[data-action="start"]'),
+  stopBtn: document.querySelector('[data-action="stop"]'),
+};
 
-startBtn.addEventListener("click", onStartChangeColor);
-stopBtn.addEventListener("click", onStopChangeColor);
-
-function startChangeColor() {
-  console.log("start"); // ???
-}
-
-function stopChangeColor() {
-  console.log("stop"); // ???
-}
+refs.startBtn.addEventListener("click", onStartChangeColor);
+refs.stopBtn.addEventListener("click", onStopChangeColor);
 
 const randomIntegerFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
 function changeColorBody() {
-  body.style.backgroundColor = colors; // ???
+  document.body.style.backgroundColor =
+    colors[randomIntegerFromInterval(0, colors.length - 1)];
+}
+
+let intervalId = null;
+
+function onStartChangeColor() {
+  refs.startBtn.setAttribute("disabled", true);
+  intervalId = setInterval(() => {
+    changeColorBody;
+  }, 1000);
+}
+
+function onStopChangeColor() {
+  clearInterval(() => {
+    refs.startBtn.removeAttribute("disabled", false);
+    clearInterval(intervalId);
+  });
 }
