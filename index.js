@@ -5,6 +5,14 @@ const colors = [
   "#FF9800",
   "#009688",
   "#795548",
+  "#FBCEB1",
+  "#B5B8B1",
+  "#FF18ED",
+  "#FCFF18",
+  "#18FFD7",
+  "#FF1838",
+  "#FF7918",
+  "#6618FF",
 ];
 
 refs = {
@@ -28,14 +36,10 @@ let intervalId = null;
 
 function onStartChangeColor() {
   refs.startBtn.setAttribute("disabled", true);
-  intervalId = setInterval(() => {
-    changeColorBody;
-  }, 1000);
+  intervalId = setInterval(changeColorBody, 500);
 }
 
 function onStopChangeColor() {
-  clearInterval(() => {
-    refs.startBtn.removeAttribute("disabled", false);
-    clearInterval(intervalId);
-  });
+  refs.startBtn.removeAttribute("disabled", true);
+  clearInterval(intervalId);
 }
